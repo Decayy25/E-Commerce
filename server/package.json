@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "elysia": "^1.4.27",
+    "init": "^0.1.2"
+  }
+}
