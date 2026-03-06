@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// import { useState, useEffect } from "react";
+import { Link , Routes, Route } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
+// Client
+import HeaderClient from "./components/HeaderClient.tsx";
+import Home from "./components/Home.tsx";
+import Footer from "./components/Footer.tsx";
+// import About from "./components/About.tsx";
+// import Services from "./components/Services.tsx";
+// import Contact from "./components/Contact.tsx";
+// import Shop from "./pages/Shop.tsx";
+
+
+
+
+
+// Administrator
+// import HeaderAdmin from "./components/HeaderAdmin.jsx";
+
+export default function App() {
+  // const [user, setUser] = useState(null);
+
+  // useEffect(() => {
+  //   const storedUser = localStorage.getItem("user");
+  //   if (storedUser) {
+  //     setUser(JSON.parse(storedUser));
+  //   }
+  // }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      {/* {user ? (
+        user.role === "admin" ? (
+          <HeaderAdmin />
 
-export default App
+        ) : (
+          <HeaderClient />
+        )
+      ) : (
+        <p>Please log in to see the content.</p>
+      )} */}
+
+      <HeaderClient />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/services" element={<Services />} />
+        <route path="/contact" element={<Contact />} />
+      </Routes>
+
+      <Footer />
+    </>
+  );
+}
