@@ -1,55 +1,29 @@
-// import { useState, useEffect } from "react";
-import { Link , Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
-// Client
-import HeaderClient from "./components/HeaderClient.tsx";
-import Home from "./components/Home.tsx";
-import Footer from "./components/Footer.tsx";
-// import About from "./components/About.tsx";
-// import Services from "./components/Services.tsx";
-// import Contact from "./components/Contact.tsx";
-// import Shop from "./pages/Shop.tsx";
+// Client Components
+import HeaderClient from "./components/HeaderClient";
+import Shop from "./components/Shop";
+import Footer from "./components/Footer";
 
-
-
-
+// Pages
+import Register from "./pages/Register";
+import Cart from "./pages/Cart";
+import Contact from "./pages/Contact";
 
 // Administrator
-// import HeaderAdmin from "./components/HeaderAdmin.jsx";
+// import HeaderAdmin from "./components/HeaderAdmin";
 
 export default function App() {
-  // const [user, setUser] = useState(null);
-
-  // useEffect(() => {
-  //   const storedUser = localStorage.getItem("user");
-  //   if (storedUser) {
-  //     setUser(JSON.parse(storedUser));
-  //   }
-  // }, []);
-
   return (
-    <>
-      {/* {user ? (
-        user.role === "admin" ? (
-          <HeaderAdmin />
-
-        ) : (
-          <HeaderClient />
-        )
-      ) : (
-        <p>Please log in to see the content.</p>
-      )} */}
-
+    <div className="flex flex-col w-full min-h-screen">
       <HeaderClient />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/services" element={<Services />} />
-        <route path="/contact" element={<Contact />} />
+        <Route path="/" element={<Shop />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
-
       <Footer />
-    </>
+    </div>
   );
 }
