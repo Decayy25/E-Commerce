@@ -111,7 +111,7 @@ export default function Shop() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-50 mt-20">
             {/* Shop Header */}
             <div className="bg-green-600 text-white py-8 mb-12">
                 <div className="max-w-7xl mx-auto px-4">
