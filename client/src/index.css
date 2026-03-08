@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+:root {
+  --intel--: #3079ee;
+  --Radeon--: #e9001d;
+  --Nvidia--: #589c00;
+}
+
+
 * {
   box-sizing: border-box;
 }

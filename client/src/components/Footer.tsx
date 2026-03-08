@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
+// import Logo from "../../public/Logo-transparent.png";
 
 export default function Footer() {
     return (
         <footer className="w-full bg-green-600 text-white mt-12">
-            {/* Footer Content */}
             <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
+
+                {/* Logo
+                <div className="footer-logo">
+                    <img src={Logo} alt="Logo" />
+                </div> */}
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {/* Layanan Pelanggan */}
                     <div>
