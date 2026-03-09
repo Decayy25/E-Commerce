@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import feather from 'feather-icons';
 
 // Dummy Product Data
 const dummyProducts = [
@@ -92,6 +93,7 @@ const dummyProducts = [
     },
 ];
 
+
 export default function Shop() {
     const [cart, setCart] = useState<number[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
@@ -109,6 +111,10 @@ export default function Shop() {
         setCart([...cart, productId]);
         alert("Product added to cart!");
     };
+
+    useEffect(() => {
+        feather.replace();
+    }, []);
 
     return (
         <div className="min-h-screen bg-gray-50 mt-20">
@@ -146,13 +152,14 @@ export default function Shop() {
                             <option value="All">All</option>
                             <option value="GPU">GPU</option>
                             <option value="CPU">CPU</option>
-                            <option value="Memory">Memory</option>
+                            <option value="RAM">RAM</option>
+                            <option value="Motherboard">Motherboard</option>
                         </select>
                     </div>
 
                     {/* Cart Count */}
                     <div className="flex items-center gap-2 bg-green-100 px-4 py-2 rounded">
-                        <span className="text-lg font-bold text-green-600">🛒</span>
+                        <span className="text-lg font-bold text-[#3079ee] hover:text-[#589c00]"><i data-feather="shopping-cart"></i></span>
                         <span className="font-medium text-gray-700">
                             Cart: {cart.length}
                         </span>

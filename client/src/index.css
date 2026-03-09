@@ -4,8 +4,12 @@
   --intel--: #3079ee;
   --Radeon--: #e9001d;
   --Nvidia--: #589c00;
+  --Icy-Aqua--: #bdfffd;
+  --Soft-Cyan--: #9FFFF5;
+  --Aquamarine--: #7cffc4;
+  --Ocean-Mist--: #6abea7;
+  --Blue-Slate--: #5e6973;
 }
-
 
 * {
   box-sizing: border-box;
