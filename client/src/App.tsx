@@ -10,12 +10,11 @@ import Register from "./pages/Register";
 import Cart from "./pages/Cart";
 import Contact from "./pages/Contact";
 
-// Administrator
-// import HeaderAdmin from "./components/HeaderAdmin";
 
 
 // Desain
-import feather from "feather-icons"; 
+import feather from "feather-icons";
+import "devicon/devicon.min.css";
 import "./index.css";
 
 feather.replace();
