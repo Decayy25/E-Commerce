@@ -13,6 +13,13 @@ import Contact from "./pages/Contact";
 // Administrator
 // import HeaderAdmin from "./components/HeaderAdmin";
 
+
+// Desain
+import feather from "feather-icons"; 
+import "./index.css";
+
+feather.replace();
+
 export default function App() {
   return (
     <div className="flex flex-col w-full min-h-screen">

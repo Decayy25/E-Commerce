@@ -6,6 +6,7 @@
       "name": "client",
       "dependencies": {
         "@tailwindcss/vite": "^4.2.1",
+        "@types/feather-icons": "^4.29.4",
         "feather-icons": "^4.29.2",
         "lucide-react": "^0.577.0",
         "react": "^19.2.0",
@@ -247,6 +248,8 @@
     "@types/babel__traverse": ["@types/babel__traverse@7.28.0", "", { "dependencies": { "@babel/types": "^7.28.2" } }, "sha512-8PvcXf70gTDZBgt9ptxJ8elBeBjcLOAcOtoO/mPJjtji1+CdGbHgm77om1GrsPxsiE+uXIpNSK64UYaIwQXd4Q=="],
 
     "@types/estree": ["@types/estree@1.0.8", "", {}, "sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w=="],
+
+    "@types/feather-icons": ["@types/feather-icons@4.29.4", "", {}, "sha512-cvwI455PWx/gJ33XDTIZOdauRy+XCxZggkOT/tAQYZLdySPFATD4RnDC9mxOnCIEaK9kwPm3zZigkAsMkhXb5w=="],
 
     "@types/json-schema": ["@types/json-schema@7.0.15", "", {}, "sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA=="],
 
