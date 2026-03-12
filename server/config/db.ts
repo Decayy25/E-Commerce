@@ -30,3 +30,5 @@ try {
 
 export const db = client.db("myapp");
 export const usersCollection = db.collection("users");
+export const usersOrder = db.collection("orders");
+export const usersCart = db.collection("carts");

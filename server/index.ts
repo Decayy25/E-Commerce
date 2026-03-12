@@ -1,11 +1,11 @@
 import { Elysia, t } from "elysia";
 import { cors } from "@elysiajs/cors";
-import { register, login, getAccounts } from "./middleware/auth.js";
-import { db, usersCollection } from './config/db.js';
+import { register, login, getAccounts } from "./middleware/auth.ts";
+import { addToCart, getCart, Order, removeFromCart, clearCart } from "./controllers/Cart.ts";
+import { db, usersCollection } from './config/db.ts';
 // import { sendContactMail } from "./utils/sendMail.js";
 import dotenv from "dotenv";
 import path from "path";
-import { register } from "module";
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config({
@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 const app = new Elysia()
     .use(cors({
@@ -33,10 +33,20 @@ const app = new Elysia()
 
     .group("/api", (app) =>
         app
-            .post("/register", async ({ body }) => await register(body))
-            .post("/login", async ({ body }) => await login(body))
+            .group("/auth", (app) =>
+                app
+                    .post("/register", async ({ body }) => await register(body as any))
+                    .post("/login", async ({ body }) => await login(body as any))
+            )
             .get("/accounts", async () => await getAccounts())
-            
+            .group("/cart", (app) =>
+                app
+                    .post("/add", async ({ body, headers }) => await addToCart(body as any, headers.authorization || ''))
+                    .get("/", async ({ headers }) => await getCart(headers.authorization || ''))
+                    .post("/remove", async ({ body, headers }) => await removeFromCart(body as any, headers.authorization || ''))
+                    .delete("/clear", async ({ headers }) => await clearCart(headers.authorization || ''))
+            )
+            .post("/order", async ({ body, headers }) => await Order(body as any, headers.authorization || ''))
     )
 
     .onError(({ code, set, error }) => {
@@ -45,9 +55,10 @@ const app = new Elysia()
             return { error: "Endpoint tidak ditemukan" };
         }
         console.error("Global Error:", error);
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
         return {
             status: 500,
-            error: error.message
+            error: errorMessage
         };
     });
 

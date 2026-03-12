@@ -65,11 +65,16 @@ export default function Shop() {
     // Add to cart
     const handleAddToCart = (productId: number) => {
         setCart([...cart, productId]);
-        alert("Product added to cart!");
     };
 
     useEffect(() => {
         feather.replace();
+
+        // Method POST karena untuk menambahkan item ke cart, bukan untuk mengambil data cart
+        fetch(`${import.meta.env.VITE_APP_API_URL}/api/carts`) 
+            .then((response) => response.json())
+            .then((data) => setCart(data))
+            .catch((err) => console.error(err));
     }, []);
 
     return (

@@ -2,7 +2,18 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { db } from "../config/db.js";
 
-export async function register(body) {
+interface RegisterBody {
+  email: string;
+  password: string;
+  username?: string;
+}
+
+interface LoginBody {
+  email: string;
+  password: string;
+}
+
+export async function register(body: RegisterBody) {
   console.log(body);
   try {
     if (!body.email || !body.password) {
@@ -36,14 +47,15 @@ export async function register(body) {
     return Response.json({ message: "Register berhasil" });
 
   } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : "Unknown error";
     return Response.json(
-      { error: err.message },
+      { error: errorMessage },
       { status: 500 }
     );
   }
 }
 
-export async function login(body) {
+export async function login(body: LoginBody) {
   try {
     if (!process.env.JWT_SECRET) {
       throw new Error("JWT_SECRET belum diset!");
@@ -86,8 +98,9 @@ export async function login(body) {
     });
 
   } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : "Unknown error";
     return Response.json(
-      { error: err.message },
+      { error: errorMessage },
       { status: 500 }
     );
   }
