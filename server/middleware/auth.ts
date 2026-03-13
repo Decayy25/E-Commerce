@@ -16,9 +16,9 @@ interface LoginBody {
 export async function register(body: RegisterBody) {
   console.log(body);
   try {
-    if (!body.email || !body.password) {
+    if (!body.email || !body.password || !body.username) {
       return Response.json(
-        { message: "Email dan password wajib diisi" },
+        { message: "Email, password dan username wajib diisi" },
         { status: 400 }
       );
     }

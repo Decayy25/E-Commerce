@@ -63,23 +63,45 @@ export default function Shop() {
     });
 
     // Add to cart
-    const handleAddToCart = (productId: number) => {
-        setCart([...cart, productId]);
-    };
+    const handleAddToCart = async (productId: number) => {
+        const product = dummyProducts.find(p => p.id === productId);
+        if (!product) return;
+
+        const token = localStorage.getItem("token");
+        const payload = {
+            productId: product.id.toString(),
+            name: product.name,
+            image: product.image,
+            price: product.price,
+            quantity: 1
+        };
+
+        try {
+            const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/carts`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                setCart([...cart, productId]);
+            }
+        } catch (err) {
+            console.error("Gagal menghubungkan ke server: ", err);
+        }
+    }
 
     useEffect(() => {
         feather.replace();
-
-        // Method POST karena untuk menambahkan item ke cart, bukan untuk mengambil data cart
-        fetch(`${import.meta.env.VITE_APP_API_URL}/api/carts`) 
-            .then((response) => response.json())
-            .then((data) => setCart(data))
-            .catch((err) => console.error(err));
     }, []);
 
     return (
         <div className="min-h-screen bg-gray-50 mt-20">
-            {/* Shop Header */}
             <div className="bg-green-600 text-white py-8 mb-12">
                 <div className="max-w-7xl mx-auto px-4">
                     <h1 className="text-4xl font-bold mb-2">Shop</h1>
@@ -87,11 +109,8 @@ export default function Shop() {
                 </div>
             </div>
 
-            {/* Main Content */}
             <div className="max-w-7xl mx-auto px-4 pb-12">
-                {/* Filters */}
                 <div className="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between bg-white p-6 rounded-lg shadow">
-                    {/* Search */}
                     <div className="flex-1 min-w-0">
                         <input
                             type="text"

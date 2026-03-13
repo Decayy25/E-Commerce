@@ -4,16 +4,16 @@ export default function CartOrder() {
     const [cartItems, setCartItems] = useState([]);
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/cart`, {
+        const token = localStorage.getItem("token");
+
+        fetch(`${import.meta.env.VITE_API}/api/carts`, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Authorization": `Bearer ${token}`
             }
         })
-        .then(response => response.json())
-        .then(data => {
-            setCartItems(data);
-        });
+        .then(res => res.json)
+        .then(data => setCartItems(data.items || [] ))
     }, []);
 
     const totalPrice = cartItems.reduce((total, item) => {

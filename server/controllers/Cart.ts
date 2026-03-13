@@ -13,6 +13,7 @@ interface CartItem {
 interface AddToCartBody {
     productId: string;
     quantity: number | string;
+    images: string,
     price: number | string;
     name?: string;
 }
@@ -61,7 +62,6 @@ export async function addToCart(body: AddToCartBody, authHeader: string): Promis
         let cart = await usersCart.findOne({ userId: new ObjectId(userId) });
 
         if (!cart) {
-            // Buat cart baru jika belum ada
             const result = await usersCart.insertOne({
                 userId: new ObjectId(userId),
                 items: [
