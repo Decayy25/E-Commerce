@@ -9,7 +9,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 
-const uri = "mongodb://localhost:27017/myapp";
+const uri = "mongodb://localhost:27017/";
 
 const client = new MongoClient(uri, {
   serverSelectionTimeoutMS: 10000,
@@ -19,9 +19,9 @@ const client = new MongoClient(uri, {
 try {
     await client.connect();
     console.log(`\x1b[32m
-        +==================================================+
-        ✅ MongoDB Connected
-        +==================================================+
++==================================================+
+✅ MongoDB Connected
++==================================================+
         `);
 } catch (err) {
     console.error("❌ MongoDB Gagal Connect: ", err);

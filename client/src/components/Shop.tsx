@@ -46,6 +46,17 @@ const dummyProducts = [
         rating: 4.6,
         reviews: 89,
         description: "ASUS ROG Strix GeForce RTX 4080 Super 16GB GDDR6X OC Edition - High-performance gaming GPU"
+    },
+    {
+        id: 5,
+        name: "ROG STRIX Z690-E GAMING WIFI",
+        price: 5750000,
+        image: "https://dlcdnwebimgs.asus.com/files/media/F06BD967-FC83-4514-8AC4-760944D051CC/v1/img/kv/ROG-Strix-Z690-E-Gaming.png",
+        category: "Motherboard",
+        stock: 25,
+        rating: 4.6,
+        reviews: 90,
+        description: "IntelZ690 LGA 1700 ATX motherboard with PCIe5.0, 16+1 power stages, DDR5 memory support, Two-Way AI Noise Cancelation, AI Overclocking, AI Cooling, AI Networking, WiFi 6E (802.11ax), Intel2.5 Gb Ethernet, four M.2 slots with heatsinks, PCIe 4.0 NVMeSSD support, M.2 backplate, PCIeSlot Q-Release, USB 3.2 Gen 2x2 Type-C, SATA and Aura Sync RGB lighting"
     }
 ];
 

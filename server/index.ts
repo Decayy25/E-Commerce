@@ -67,10 +67,10 @@ export default app;
 if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT);
   console.log(`\x1b[32m
-  +==================================================+
-  ✅ Elysia Server running!
-  🌐 http://localhost:${PORT}
-  📂 File: index.js
-  +==================================================+
++==================================================+
+✅ Elysia Server running!
+🌐 http://localhost:${PORT}
+📂 File: index.js
++==================================================+
 `);
 }
