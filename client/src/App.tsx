@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Cart from "./components/CartOrder";
 
 // Pages
+import LoginPage from "./pages/LoginPage";
 import Register from "./pages/Register";
 import Contact from "./pages/Contact";
 
@@ -42,6 +43,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Shop />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>

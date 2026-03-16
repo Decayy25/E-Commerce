@@ -39,7 +39,7 @@ const app = new Elysia()
                     .post("/login", async ({ body }) => await login(body as any))
             )
             .get("/accounts", async () => await getAccounts())
-            .group("/cart", (app) =>
+            .group("/carts", (app) =>
                 app
                     .post("/add", async ({ body, headers }) => await addToCart(body as any, headers.authorization || ''))
                     .get("/", async ({ headers }) => await getCart(headers.authorization || ''))
