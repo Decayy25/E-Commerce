@@ -1,4 +1,3 @@
-// LoginPage.tsx
 import React, { useState, FormEvent } from 'react';
 
 interface LoginFormData {
