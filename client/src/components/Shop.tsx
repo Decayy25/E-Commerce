@@ -67,7 +67,18 @@ const dummyProducts = [
         stock: 10,
         rating: 4.4,
         reviews: 63,
-        description: " motherboard ATX premium berbasis chipset AMD B850 (soket AM5) yang dirancang untuk prosesor Ryzen 7000/8000/9000 series. Fitur utamanya mencakup dukungan PCIe 5.0 penuh, RAM DDR5 cepat, WiFi 7, dan 19 port USB (termasuk 20Gbps)"
+        description: "motherboard ATX premium berbasis chipset AMD B850 (soket AM5) yang dirancang untuk prosesor Ryzen 7000/8000/9000 series. Fitur utamanya mencakup dukungan PCIe 5.0 penuh, RAM DDR5 cepat, WiFi 7, dan 19 port USB (termasuk 20Gbps)"
+    },
+    {
+        id: 7,
+        name: "X870E AORUS MASTER GAMING WIFI 7",
+        price: 7530000,
+        image: "https://static.gigabyte.com/StaticFile/Image/Global/6742038c90b90dbde85a56e33c573323/Product/44015",
+        category: "Motherboard",
+        stock: 10,
+        rating: 4.4,
+        reviews: 98,
+        description: "motherboard ATX premium  socket AM5, mendukung AMD Ryzen 9000/8000/7000 Series. Menampilkan teknologi tercanggih, motherboard ini mengunggulkan PCIe 5.0 (GPU & M.2), WiFi 7, USB4 40Gbps, VRM digital kokoh, serta fitur ramah rakit seperti EZ-Latch Plus"
     }
 ];
 
