@@ -67,7 +67,7 @@ const dummyProducts = [
         stock: 10,
         rating: 4.4,
         reviews: 63,
-        description: "motherboard ATX premium berbasis chipset AMD B850 (soket AM5) yang dirancang untuk prosesor Ryzen 7000/8000/9000 series. Fitur utamanya mencakup dukungan PCIe 5.0 penuh, RAM DDR5 cepat, WiFi 7, dan 19 port USB (termasuk 20Gbps)"
+        description: "Motherboard ATX premium berbasis chipset AMD B850 (soket AM5) yang dirancang untuk prosesor Ryzen 7000/8000/9000 series. Fitur utamanya mencakup dukungan PCIe 5.0 penuh, RAM DDR5 cepat, WiFi 7, dan 19 port USB (termasuk 20Gbps)"
     },
     {
         id: 7,
@@ -75,10 +75,21 @@ const dummyProducts = [
         price: 7530000,
         image: "https://static.gigabyte.com/StaticFile/Image/Global/6742038c90b90dbde85a56e33c573323/Product/44015",
         category: "Motherboard",
-        stock: 10,
+        stock: 15,
         rating: 4.4,
         reviews: 98,
-        description: "motherboard ATX premium  socket AM5, mendukung AMD Ryzen 9000/8000/7000 Series. Menampilkan teknologi tercanggih, motherboard ini mengunggulkan PCIe 5.0 (GPU & M.2), WiFi 7, USB4 40Gbps, VRM digital kokoh, serta fitur ramah rakit seperti EZ-Latch Plus"
+        description: "Motherboard ATX premium  socket AM5, mendukung AMD Ryzen 9000/8000/7000 Series. Menampilkan teknologi tercanggih, motherboard ini mengunggulkan PCIe 5.0 (GPU & M.2), WiFi 7, USB4 40Gbps, VRM digital kokoh, serta fitur ramah rakit seperti EZ-Latch Plus"
+    },
+    {
+        id: 8,
+        name: "B850 AORUS ELITE WIFI 7 ICE (Rev. 1.x)",
+        price: 4310000,
+        image: "https://static.gigabyte.com/StaticFile/Image/Global/62e16c53d6c6410d314525f21864d47a/Product/46274",
+        category: "Motherboard",
+        stock: 20,
+        rating: 4.6,
+        reviews: 288,
+        description: "Motherboard ATX premium berwarna putih (ICE) untuk soket AMD AM5, didesain untuk Ryzen 7000/8000/9000 series. Fitur utamanya mencakup dukungan DDR5 (hingga 8200+ MT/s), slot PCIe 5.0 x16, M.2 PCIe 5.0, Wi-Fi 7, 2.5GbE LAN, dan sistem daya 14+2+2 VRM untuk stabilitas tinggi."
     }
 ];
 
