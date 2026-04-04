@@ -1,5 +1,5 @@
 // RegisterPage.tsx
-import React, { useState, FormEvent, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 
 interface RegisterFormData {
   firstName: string;

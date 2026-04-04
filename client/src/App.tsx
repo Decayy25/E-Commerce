@@ -1,15 +1,15 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 // Client Components
-import Header from "./components/Header";
+import Header from "./components/organisms/Header";
 import Shop from "./components/Shop";
-import Footer from "./components/Footer";
-import Cart from "./components/CartOrder";
+import Footer from "./components/organisms/Footer";
+import Cart from "./components/organisms/CartOrder";
 
 // Pages
 import LoginPage from "./pages/LoginPage";
-import Register from "./pages/Register";
+import RegisterPage from "./pages/RegisterPage";
 import Contact from "./pages/Contact";
 
 
@@ -23,6 +23,7 @@ import "aos/dist/aos.css";
 
 export default function App() {
   const [account, setAccount] = useState([]);
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   useEffect(() => {
     AOS.init({ duration: 800, easing: "ease-in-out", once: false});
@@ -30,24 +31,33 @@ export default function App() {
     fetch(`${import.meta.env.VITE_API}/api/accounts`)
       .then((response) => response.json())
       .then((data) => {
-        setAccount(data);
+        setAccount(data || account);
         setTimeout(() => AOS.refresh(), 100);
       })
       .catch(err => console.error(err));
   }, []);
 
+  const hiddenHeaderFooter = ["/login", "/register"];
+  const currentPath = window.location.pathname;
+  const isAuthPage = hiddenHeaderFooter.includes(currentPath);
+
   
   return (
     <div className="flex flex-col w-full min-h-screen">
-      <Header />
+      {!isAuthPage && <Header />}
+
       <Routes>
-        <Route path="/" element={<Shop />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={!token ? <LoginPage setToken={setToken} /> : <Navigate to="/" />} />
+        <Route path="/register" element={!token ? <RegisterPage /> : <Navigate to="/login" />} />
+        <Route path="/" element={token ? <Shop /> : <Navigate to="/login" />} />
+        
+        
+        
         <Route path="/cart" element={<Cart />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-      <Footer />
+
+      {!isAuthPage && <Footer />}
     </div>
   );
 }

@@ -70,7 +70,7 @@ if (process.env.NODE_ENV !== 'production') {
 +==================================================+
 ✅ Elysia Server running!
 🌐 http://localhost:${PORT}
-📂 File: index.js
+📂 File: index.ts
 +==================================================+
 `);
 }

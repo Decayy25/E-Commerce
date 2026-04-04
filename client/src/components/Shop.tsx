@@ -95,50 +95,34 @@ const dummyProducts = [
 
 
 export default function Shop() {
-    const [cart, setCart] = useState<number[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
+    const [cart, setCart] = useState([]);
+    const [products] = useState(dummyProducts);
 
-    // Filter products
-    const filteredProducts = dummyProducts.filter((product) => {
-        const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
-        const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
-        return matchesSearch && matchesCategory;
-    });
+    const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        (selectedCategory === "All" || product.category === selectedCategory)
+    );
 
-    // Add to cart
-    const handleAddToCart = async (productId: number) => {
-        const product = dummyProducts.find(p => p.id === productId);
-        if (!product) return;
-
-        const token = localStorage.getItem("token");
-        const payload = {
-            productId: product.id.toString(),
-            name: product.name,
-            image: product.image,
-            price: product.price,
-            quantity: 1
-        };
-
-        try {
-            const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/carts`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`
-                },
-                body: JSON.stringify(payload)
-            });
-
-            const result = await response.json();
-
-            if (response.ok) {
-                setCart([...cart, productId]);
-            }
-        } catch (err) {
-            console.error("Gagal menghubungkan ke server: ", err);
-        }
+    interface Product {
+        id: number;
+        name: string;
+        price: number;
+        image: string;
+        category: string;
+        stock: number;
+        rating: number;
+        reviews: number;
+        description: string;
     }
+
+        const handleAddToCart = (productId: number) => {
+            const product: Product | undefined = products.find(p => p.id === productId);
+            if (product && product.stock > 0) {
+                setCart(prevCart => [...prevCart, product]);
+            }
+        };
 
     useEffect(() => {
         feather.replace();

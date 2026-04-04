@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import Logo from "../assets/Logo.png";
+import Logo from "../../assets/Logo.png";
 import feather from "feather-icons";
 import "devicon/devicon.min.css";
 
 // payment method logo
-import dana from "../assets/payment/dana.png";
-import ovo from "../assets/payment/ovo.png";
-import gopay from "../assets/payment/gopay.png";
-import bca from "../assets/payment/bca.png";
-import bni from "../assets/payment/bni.png";
-import bri from "../assets/payment/bri.png";
-import mandiri from "../assets/payment/mandiri.png";
-import indomart from "../assets/payment/indomart.png";
-import alfamart from "../assets/payment/alfamart.png";
+import dana from "../../assets/payment/dana.png";
+import ovo from "../../assets/payment/ovo.png";
+import gopay from "../../assets/payment/gopay.png";
+import bca from "../../assets/payment/bca.png";
+import bni from "../../assets/payment/bni.png";
+import bri from "../../assets/payment/bri.png";
+import mandiri from "../../assets/payment/mandiri.png";
+import indomart from "../../assets/payment/indomart.png";
+import alfamart from "../../assets/payment/alfamart.png";
 
 const paymentMethods = {
   dana: dana,
