@@ -1,9 +1,8 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 // Client Components
 import Header from "./components/organisms/Header";
-import Shop from "./components/Shop";
 import Footer from "./components/organisms/Footer";
 import Cart from "./components/organisms/CartOrder";
 
@@ -11,6 +10,7 @@ import Cart from "./components/organisms/CartOrder";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Contact from "./pages/Contact";
+import Shop from "./pages/Shop";
 
 
 
@@ -47,9 +47,11 @@ export default function App() {
       {!isAuthPage && <Header />}
 
       <Routes>
-        <Route path="/login" element={!token ? <LoginPage setToken={setToken} /> : <Navigate to="/" />} />
+        {/* <Route path="/login" element={!token ? <LoginPage setToken={setToken} /> : <Navigate to="/" />} />
         <Route path="/register" element={!token ? <RegisterPage /> : <Navigate to="/login" />} />
-        <Route path="/" element={token ? <Shop /> : <Navigate to="/login" />} />
+        <Route path="/" element={token ? <Shop /> : <Navigate to="/login" />} /> */}
+        
+        <Route path="/" element={<Shop />} />
         
         
         

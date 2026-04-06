@@ -47,6 +47,25 @@ const app = new Elysia()
                     .delete("/clear", async ({ headers }) => await clearCart(headers.authorization || ''))
             )
             .post("/order", async ({ body, headers }) => await Order(body as any, headers.authorization || ''))
+            .post("/products", async ({ body }) => {
+                const { id, name, price, image, category, stock, rating, reviews, description } = body as any;
+                
+                try {
+                    const product = { id, name, price, image, category, stock, rating, reviews, description };
+                    const result = await db.collection('products').insertOne(product);
+                    return { success: true, productId: result.insertedId, id };
+                } catch (error) {
+                    console.error("Error adding product:", error);
+                    return { success: false, error: "Failed to add product" };
+            }})
+            .get("/products", async () => {
+                try {
+                    const products = await db.collection('products').find().toArray();
+                    return products;
+                } catch (error) {
+                    console.error("Error Fetching: ", error);
+                }
+            })
     )
 
     .onError(({ code, set, error }) => {

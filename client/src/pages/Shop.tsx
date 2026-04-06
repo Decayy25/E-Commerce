@@ -1,104 +1,12 @@
 import { useState, useEffect } from "react";
 import feather from 'feather-icons';
-
-// Dummy Product Data
-const dummyProducts = [
-    {
-        id: 1,
-        name: "ROG ASTRAL GeForce RTX 5090 OC 32GB GDDR7",
-        price: 73069000,
-        image: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQPtBSy5KjNegQwPsbh8UJEKN5qykxqC_EgqPfFsf-CZyDEzzeOEyGzm6J0wDSliahmwztNA95U9NRHdM6bX8yhRFi7t5z9",
-        category: "GPU",
-        stock: 10,
-        rating: 4.8,
-        reviews: 124,
-        description: "ASUS ROG ASTRAL GeForce RTX 5090 OC - Ultimate gaming performance"
-    },
-    {
-        id: 2,
-        name: "MSI GeForce RTX 5090 LIGHTNING Z 32GB GDDR7",
-        price: 106500000,
-        image: "https://asset.msi.com/resize/image/global/product/product_17676039907891dedb6bfd993248f5617995beb9a9.png62405b38c58fe0f07fcef2367d8a9ba1/1024.png",
-        category: "GPU",
-        stock: 2,
-        rating: 4.7,
-        reviews: 98,
-        description: "MSI GeForce RTX 5090 LIGHTNING Z 32GB GDDR7 - High-performance gaming GPU"
-    },
-    {
-        id: 3,
-        name: "AORUS GeForce RTX™ 5090 MASTER 32G",
-        price: 57172000,
-        image: "https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/img/VqbcmM/2025/4/22/a3ddcf5a-3628-4f65-9287-806c71289c58.jpg~tplv-aphluv4xwc-resize-jpeg:700:0.jpg",
-        category: "GPU",
-        stock: 15,
-        rating: 4.5,
-        reviews: 76,
-        description: "AORUS GeForce RTX™ 5090 MASTER 32G - Premium gaming GPU with advanced features"
-    },
-    {
-        id: 4,
-        name: "ROG Strix GeForce RTX 4080 Super 16GB GDDR6X OC",
-        price:  23999000,
-        image: "https://wpg-indonesia.com/storage/app/media/ASUS%20Product/ASUS%20GRAPHIC%20CARD/ASUS%20ROG%20Strix%20GeForce%20RTX%204080%20SUPER%2016GB%20GDDR6X%20OC%20Edition/6.png",
-        category: "GPU",
-        stock: 20,
-        rating: 4.6,
-        reviews: 89,
-        description: "ASUS ROG Strix GeForce RTX 4080 Super 16GB GDDR6X OC Edition - High-performance gaming GPU"
-    },
-    {
-        id: 5,
-        name: "ROG STRIX Z690-E GAMING WIFI",
-        price: 5750000,
-        image: "https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/img/VqbcmM/2022/2/8/aeb6fec3-8886-421e-bac6-58ebdacda0d3.jpg~tplv-aphluv4xwc-resize-jpeg:700:0.jpg",
-        category: "Motherboard",
-        stock: 25,
-        rating: 4.6,
-        reviews: 90,
-        description: "IntelZ690 LGA 1700 ATX motherboard with PCIe5.0, 16+1 power stages, DDR5 memory support, Two-Way AI Noise Cancelation, AI Overclocking, AI Cooling, AI Networking, WiFi 6E (802.11ax), Intel2.5 Gb Ethernet, four M.2 slots with heatsinks, PCIe 4.0 NVMeSSD support, M.2 backplate, PCIeSlot Q-Release, USB 3.2 Gen 2x2 Type-C, SATA and Aura Sync RGB lighting"
-    },
-    {
-        id: 6,
-        name: "ROG STRIX B850-F GAMING WIFI",
-        price: 5799000,
-        image: "https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/img/VqbcmM/2025/1/9/5910c5f0-6068-4ce6-b856-cda3379791cd.jpg~tplv-aphluv4xwc-resize-jpeg:700:0.jpg",
-        category: "Motherboard",
-        stock: 10,
-        rating: 4.4,
-        reviews: 63,
-        description: "Motherboard ATX premium berbasis chipset AMD B850 (soket AM5) yang dirancang untuk prosesor Ryzen 7000/8000/9000 series. Fitur utamanya mencakup dukungan PCIe 5.0 penuh, RAM DDR5 cepat, WiFi 7, dan 19 port USB (termasuk 20Gbps)"
-    },
-    {
-        id: 7,
-        name: "X870E AORUS MASTER GAMING WIFI 7",
-        price: 7530000,
-        image: "https://static.gigabyte.com/StaticFile/Image/Global/6742038c90b90dbde85a56e33c573323/Product/44015",
-        category: "Motherboard",
-        stock: 15,
-        rating: 4.4,
-        reviews: 98,
-        description: "Motherboard ATX premium  socket AM5, mendukung AMD Ryzen 9000/8000/7000 Series. Menampilkan teknologi tercanggih, motherboard ini mengunggulkan PCIe 5.0 (GPU & M.2), WiFi 7, USB4 40Gbps, VRM digital kokoh, serta fitur ramah rakit seperti EZ-Latch Plus"
-    },
-    {
-        id: 8,
-        name: "B850 AORUS ELITE WIFI 7 ICE (Rev. 1.x)",
-        price: 4310000,
-        image: "https://static.gigabyte.com/StaticFile/Image/Global/62e16c53d6c6410d314525f21864d47a/Product/46274",
-        category: "Motherboard",
-        stock: 20,
-        rating: 4.6,
-        reviews: 288,
-        description: "Motherboard ATX premium berwarna putih (ICE) untuk soket AMD AM5, didesain untuk Ryzen 7000/8000/9000 series. Fitur utamanya mencakup dukungan DDR5 (hingga 8200+ MT/s), slot PCIe 5.0 x16, M.2 PCIe 5.0, Wi-Fi 7, 2.5GbE LAN, dan sistem daya 14+2+2 VRM untuk stabilitas tinggi."
-    }
-];
-
+import { getProducts } from "../api/api"
 
 export default function Shop() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
-    const [cart, setCart] = useState([]);
-    const [products] = useState(dummyProducts);
+    const [cart, setCart] = useState<Product[]>([]);
+    const [products, setProducts] = useState<Product[]>([]);
 
     const filteredProducts = products.filter(product =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -126,6 +34,16 @@ export default function Shop() {
 
     useEffect(() => {
         feather.replace();
+        const fetchProduct = async () => {
+            try {
+                const data = await getProducts();
+                setProducts(data);
+            } catch (error) {
+                console.error("Failed Fetching: ", error)
+            }
+        }
+
+        fetchProduct();
     }, []);
 
     return (
