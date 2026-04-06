@@ -4,14 +4,6 @@ import { register, login, getAccounts } from "./middleware/auth.ts";
 import { addToCart, getCart, Order, removeFromCart, clearCart } from "./controllers/Cart.ts";
 import { db, usersCollection } from './config/db.ts';
 // import { sendContactMail } from "./utils/sendMail.js";
-import dotenv from "dotenv";
-import path from "path";
-
-if (process.env.NODE_ENV !== 'production') {
-  dotenv.config({
-    path: path.resolve(process.cwd(), "../.env")
-  });
-}
 
 const PORT = process.env.PORT || 5001;
 

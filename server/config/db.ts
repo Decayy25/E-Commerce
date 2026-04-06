@@ -6,10 +6,18 @@ if (process.env.NODE_ENV !== 'production') {
   dotenv.config({
     path: path.resolve(process.cwd(), "../.env")
   });
+
+  if (!process.env.MONGO_URI) {
+    dotenv.config({
+      path: path.resolve(process.cwd(), ".env")
+    });
+  }
 }
 
-
 const uri = process.env.MONGO_URI;
+if (!uri) {
+  throw new Error("MONGO_URI is not defined. Please set it in your environment or .env file.");
+}
 
 const client = new MongoClient(uri, {
   serverSelectionTimeoutMS: 10000,
