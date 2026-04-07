@@ -14,11 +14,12 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
-// const uri = process.env.MONGO_URI;
-const uri = "mongodb://localhost:27017/";
+const uri = process.env.MONGO_URI ?? (process.env.NODE_ENV === 'production' ? undefined : "mongodb://localhost:27017/");
 
 if (!uri) {
-  throw new Error("MONGO_URI is not defined. Please set it in your environment or .env file.");
+  throw new Error(
+    "MONGO_URI is not defined. Set it in Vercel Environment Variables or create a local .env file for development."
+  );
 }
 
 const client = new MongoClient(uri, {
@@ -35,10 +36,11 @@ try {
         `);
 } catch (err) {
     console.error("❌ MongoDB Gagal Connect: ", err);
-    process.exit(1);
+    throw err;
 }
 
-export const db = client.db("myapp");
+const dbName = process.env.MONGO_DB_NAME ?? "myapp";
+export const db = client.db(dbName);
 export const usersCollection = db.collection("users");
 export const usersOrder = db.collection("orders");
 export const usersCart = db.collection("carts");
