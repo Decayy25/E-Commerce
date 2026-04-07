@@ -48,15 +48,8 @@ export default function Shop() {
 
     return (
         <div className="min-h-screen bg-gray-50 mt-20">
-            <div className="bg-green-600 text-white py-8 mb-12">
-                <div className="max-w-7xl mx-auto px-4">
-                    <h1 className="text-4xl font-bold mb-2">Shop</h1>
-                    <p className="text-green-100">Discover premium GPUs at unbeatable prices</p>
-                </div>
-            </div>
-
             <div className="max-w-7xl mx-auto px-4 pb-12">
-                <div className="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between bg-white p-6 rounded-lg shadow">
+                <div className="mb-8 mt-5 flex flex-col md:flex-row gap-4 items-center justify-between bg-white p-6 rounded-lg shadow">
                     <div className="flex-1 min-w-0">
                         <input
                             type="text"

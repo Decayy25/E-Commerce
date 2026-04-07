@@ -1,6 +1,6 @@
 export const getProducts = async () => {
     try {
-        const res = await fetch(`${import.meta.env.VITE_API}/api/products`, {
+        const res = await fetch(`${import.meta.env.VITE_API}/api/product/get`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"

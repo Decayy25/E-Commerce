@@ -1,8 +1,8 @@
 import { Elysia, t } from "elysia";
 import { cors } from "@elysiajs/cors";
 import { register, login, getAccounts } from "./middleware/auth.ts";
-import { addToCart, getCart, Order, removeFromCart, clearCart } from "./controllers/Cart.ts";
 import { db, usersCollection } from './config/db.ts';
+import { addProduct, getProduct } from "./controllers/Product.ts";
 // import { sendContactMail } from "./utils/sendMail.js";
 
 const PORT = process.env.PORT || 5001;
@@ -29,35 +29,13 @@ const app = new Elysia()
                 app
                     .post("/register", async ({ body }) => await register(body as any))
                     .post("/login", async ({ body }) => await login(body as any))
+                    .get("/accounts", async () => await getAccounts())
             )
-            .get("/accounts", async () => await getAccounts())
-            .group("/carts", (app) =>
+            .group("/product", (app) =>
                 app
-                    .post("/add", async ({ body, headers }) => await addToCart(body as any, headers.authorization || ''))
-                    .get("/", async ({ headers }) => await getCart(headers.authorization || ''))
-                    .post("/remove", async ({ body, headers }) => await removeFromCart(body as any, headers.authorization || ''))
-                    .delete("/clear", async ({ headers }) => await clearCart(headers.authorization || ''))
+                    .get("/get", async () => await getProduct())
+                    .post("/add", async ({ body }) => await addProduct(body as any))
             )
-            .post("/order", async ({ body, headers }) => await Order(body as any, headers.authorization || ''))
-            .post("/products", async ({ body }) => {
-                const { id, name, price, image, category, stock, rating, reviews, description } = body as any;
-                
-                try {
-                    const product = { id, name, price, image, category, stock, rating, reviews, description };
-                    const result = await db.collection('products').insertOne(product);
-                    return { success: true, productId: result.insertedId, id };
-                } catch (error) {
-                    console.error("Error adding product:", error);
-                    return { success: false, error: "Failed to add product" };
-            }})
-            .get("/products", async () => {
-                try {
-                    const products = await db.collection('products').find().toArray();
-                    return products;
-                } catch (error) {
-                    console.error("Error Fetching: ", error);
-                }
-            })
     )
 
     .onError(({ code, set, error }) => {
