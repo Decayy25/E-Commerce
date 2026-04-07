@@ -1,29 +1,16 @@
 import { MongoClient } from "mongodb";
 
-const uri = process.env.MONGO_URI;
+const uri = process.env.MONGO_URI!;
+const client = new MongoClient(uri);
 
-if (!uri) {
-  throw new Error(
-    "MONGO_URI is not defined. Set it in Vercel Environment Variables or create a local .env file for development."
-  );
+let cachedDb: any = null;
+
+export async function getDb() {
+  if (cachedDb) return cachedDb;
+
+  await client.connect();
+  const db = client.db(process.env.MONGO_DB_NAME || "myapp");
+
+  cachedDb = db;
+  return db;
 }
-
-const client = new MongoClient(uri, {
-  serverSelectionTimeoutMS: 5000,
-});
-
-try {
-    await client.connect();
-    console.log(`\x1b[32m
-+==================================================+
-✅ MongoDB Connected
-+==================================================+
-        `);
-} catch (err) {
-    console.error("❌ MongoDB Gagal Connect: ", err);
-    throw err;
-}
-
-const dbName = process.env.MONGO_DB_NAME ?? "myapp";
-export const db = client.db(dbName);
-export const usersCollection = db.collection("users");

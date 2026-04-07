@@ -1,5 +1,6 @@
-import { db } from "../config/db";
+import { getDb } from "../config/db";
 
+const db = await getDb();
 export async function getProduct() {
     try {
         const products = await db.collection('products').find().toArray();

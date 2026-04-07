@@ -1,4 +1,4 @@
-import { Elysia, t } from "elysia";
+import { Elysia } from "elysia";
 import { cors } from "@elysiajs/cors";
 // import { db, usersCollection } from './config/db';
 import { addProduct, getProduct } from "./controllers/Product";
@@ -53,13 +53,12 @@ const app = new Elysia()
 
 export default app;
 
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(process.env.PORT || 5001);
-  console.log(`\x1b[32m
-+==================================================+
-✅ Elysia Server running!
-🌐 http://localhost:${PORT}
-📂 File: index.ts
-+==================================================+
-`);
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   console.log(`\x1b[32m
+// +==================================================+
+// ✅ Elysia Server running!
+// 🌐 http://localhost:${PORT}
+// 📂 File: index.ts
+// +==================================================+
+// `);
+// }
