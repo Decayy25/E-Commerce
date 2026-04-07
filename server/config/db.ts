@@ -1,20 +1,6 @@
 import { MongoClient } from "mongodb";
-import dotenv from "dotenv";
-import path from "path";
 
-if (process.env.NODE_ENV !== 'production') {
-  dotenv.config({
-    path: path.resolve(process.cwd(), "../.env")
-  });
-
-  if (!process.env.MONGO_URI) {
-    dotenv.config({
-      path: path.resolve(process.cwd(), ".env")
-    });
-  }
-}
-
-const uri = process.env.MONGO_URI ?? (process.env.NODE_ENV === 'production' ? undefined : "mongodb://localhost:27017/");
+const uri = process.env.MONGO_URI;
 
 if (!uri) {
   throw new Error(
@@ -23,8 +9,7 @@ if (!uri) {
 }
 
 const client = new MongoClient(uri, {
-  serverSelectionTimeoutMS: 10000,
-  family: 4
+  serverSelectionTimeoutMS: 5000,
 });
 
 try {

@@ -54,7 +54,7 @@ const app = new Elysia()
 export default app;
 
 if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT);
+  app.listen(process.env.PORT || 5001);
   console.log(`\x1b[32m
 +==================================================+
 ✅ Elysia Server running!
