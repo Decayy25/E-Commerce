@@ -3,6 +3,15 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "bun index.ts",
+    "start": "bun index.ts",
+    "build": "echo 'No build step needed for Bun'"
+  },
+  "engines": {
+    "node": ">=20.x"
+  },
+  "packageManager": "bun@1.1.0",
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
     "@types/bun": "latest",
