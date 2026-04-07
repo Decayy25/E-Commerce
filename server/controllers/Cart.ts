@@ -1,4 +1,4 @@
-import { db, usersCollection, usersOrder, usersCart } from '../config/db.ts';
+import { db, usersCollection, usersOrder, usersCart } from '../config/db';
 import jwt from 'jsonwebtoken';
 import { ObjectId } from 'mongodb';
 

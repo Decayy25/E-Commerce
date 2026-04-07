@@ -1,7 +1,7 @@
 import { Elysia, t } from "elysia";
 import { cors } from "@elysiajs/cors";
-import { db, usersCollection } from './config/db.ts';
-import { addProduct, getProduct } from "./controllers/Product.ts";
+import { db, usersCollection } from './config/db';
+import { addProduct, getProduct } from "./controllers/Product";
 // import { sendContactMail } from "./utils/sendMail.js";
 // import { register, login, getAccounts } from "./middleware/auth.ts";
 

@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { db } from "../config/db.ts";
+import { db } from "../config/db";
 
 interface RegisterBody {
   email: string;
