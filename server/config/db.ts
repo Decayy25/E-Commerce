@@ -27,5 +27,3 @@ try {
 const dbName = process.env.MONGO_DB_NAME ?? "myapp";
 export const db = client.db(dbName);
 export const usersCollection = db.collection("users");
-export const usersOrder = db.collection("orders");
-export const usersCart = db.collection("carts");

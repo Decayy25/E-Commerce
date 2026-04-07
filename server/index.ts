@@ -1,9 +1,9 @@
 import { Elysia, t } from "elysia";
 import { cors } from "@elysiajs/cors";
-import { register, login, getAccounts } from "./middleware/auth.ts";
 import { db, usersCollection } from './config/db.ts';
 import { addProduct, getProduct } from "./controllers/Product.ts";
 // import { sendContactMail } from "./utils/sendMail.js";
+// import { register, login, getAccounts } from "./middleware/auth.ts";
 
 const PORT = process.env.PORT || 5001;
 
@@ -25,12 +25,12 @@ const app = new Elysia()
 
     .group("/api", (app) =>
         app
-            .group("/auth", (app) =>
-                app
-                    .post("/register", async ({ body }) => await register(body as any))
-                    .post("/login", async ({ body }) => await login(body as any))
-                    .get("/accounts", async () => await getAccounts())
-            )
+            // .group("/auth", (app) =>
+            //     app
+            //         .post("/register", async ({ body }) => await register(body as any))
+            //         .post("/login", async ({ body }) => await login(body as any))
+            //         .get("/accounts", async () => await getAccounts())
+            // )
             .group("/product", (app) =>
                 app
                     .get("/get", async () => await getProduct())
