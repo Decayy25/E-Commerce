@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "index.ts": {
+      "runtime": "vercel-bun@1.3.0"
+    }
+  }
+}
