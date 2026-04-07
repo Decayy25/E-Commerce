@@ -1,18 +1,14 @@
 {
   "version": 2,
   "functions": {
-    "index.ts": {
+    "api/index.ts": {
       "runtime": "vercel-bun@1.3.0"
     }
   },
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/index.ts"
-    },
-    {
-      "source": "/((?!api/).*)",
-      "destination": "/index.ts"
+      "source": "/(.*)",
+      "destination": "api/index.ts"
     }
   ]
 }
