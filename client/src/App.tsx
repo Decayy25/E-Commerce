@@ -28,7 +28,7 @@ export default function App() {
   useEffect(() => {
     AOS.init({ duration: 800, easing: "ease-in-out", once: false});
     feather.replace();
-    fetch(`${import.meta.env.VITE_API}/api/accounts`)
+    fetch(`${import.meta.env.VITE_API}/api/auth/accounts`)
       .then((response) => response.json())
       .then((data) => {
         setAccount(data || account);

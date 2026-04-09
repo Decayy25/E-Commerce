@@ -1,24 +1,13 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { db } from "../config/db";
+import { db } from "../config/db.js";
 
-interface RegisterBody {
-  email: string;
-  password: string;
-  username?: string;
-}
-
-interface LoginBody {
-  email: string;
-  password: string;
-}
-
-export async function register(body: RegisterBody) {
+export async function register(body) {
   console.log(body);
   try {
-    if (!body.email || !body.password || !body.username) {
+    if (!body.email || !body.password) {
       return Response.json(
-        { message: "Email, password dan username wajib diisi" },
+        { message: "Email dan password wajib diisi" },
         { status: 400 }
       );
     }
@@ -47,15 +36,14 @@ export async function register(body: RegisterBody) {
     return Response.json({ message: "Register berhasil" });
 
   } catch (err) {
-    const errorMessage = err instanceof Error ? err.message : "Unknown error";
     return Response.json(
-      { error: errorMessage },
+      { error: err.message },
       { status: 500 }
     );
   }
 }
 
-export async function login(body: LoginBody) {
+export async function login(body) {
   try {
     if (!process.env.JWT_SECRET) {
       throw new Error("JWT_SECRET belum diset!");
@@ -98,9 +86,8 @@ export async function login(body: LoginBody) {
     });
 
   } catch (err) {
-    const errorMessage = err instanceof Error ? err.message : "Unknown error";
     return Response.json(
-      { error: errorMessage },
+      { error: err.message },
       { status: 500 }
     );
   }
