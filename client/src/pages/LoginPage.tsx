@@ -1,33 +1,30 @@
-import { useState, useEffect } from 'react';
-import error from 'console';
-
-interface LoginFormData {
-  email: string;
-  password: string;
-}
+import React from 'react';
+import { Link } from "react-router-dom";
+import { LoginForm } from '../components/organisms/LoginForm';
+import { Button } from '../components/atoms/Button';
+import logo from "../assets/Logo.png"
 
 const LoginPage: React.FC = () => {
-  const [formData, setFormData] = useState<LoginFormData>({email: '',password: ''});
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API}/api/auth/login`, {
-      method: 'POST',
-      headers: {  'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    })
-    .then(response => response.json())
-    .then(data => localStorage.setItem("token", data.token))
-    .catch(err => error.log(err))
-    .finally(() => setIsLoading(false));
-  }, []);
-
-
-
   return (
-    // atomic design
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-green-400 to-blue-500">
-      
+    <div className="flex items-center justify-center min-h-screen bg-[#e5e7eb]">
+      <div className="bg-white p-10 rounded-xl border border-gray-300 shadow-xl w-full max-w-[400px] flex flex-col items-center">
+        
+        {/* Logo Placeholder */}
+        <div className="mb-12">
+           <div className="w-46 h-46 flex items-center justify-center">
+              <img src={logo} />
+           </div>
+        </div>
+
+        <LoginForm />
+
+        <div className="mt-6 flex gap-1 items-center">
+          <span className="text-blue-500 text-xs">Do you not have account?</span>
+          <Button variant="link">
+            <Link to={"/register"}>Register</Link>
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

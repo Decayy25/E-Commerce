@@ -1,3 +1,4 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
 @import "tailwindcss";
 
 :root {
@@ -37,3 +38,4 @@ body {
 .animate-slide-up {
   animation: slide-up 0.8s ease-out;
 }
+

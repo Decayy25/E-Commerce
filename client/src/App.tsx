@@ -13,7 +13,6 @@ import Contact from "./pages/Contact";
 import Shop from "./pages/Shop";
 
 
-
 // Desain
 import feather from "feather-icons";  
 import "devicon/devicon.min.css";
@@ -52,6 +51,8 @@ export default function App() {
         <Route path="/" element={token ? <Shop /> : <Navigate to="/login" />} /> */}
         
         <Route path="/" element={<Shop />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         
         
         
