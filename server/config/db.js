@@ -1,4 +1,3 @@
-import { Elysia } from "elysia";
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 import path from "path";

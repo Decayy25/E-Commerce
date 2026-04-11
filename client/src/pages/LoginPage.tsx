@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { LoginForm } from '../components/organisms/LoginForm';
+import { LoginForm } from '../components/templates/LoginForm';
 import { Button } from '../components/atoms/Button';
 import logo from "../assets/Logo.png"
 
@@ -19,7 +19,7 @@ const LoginPage: React.FC = () => {
         <LoginForm />
 
         <div className="mt-6 flex gap-1 items-center">
-          <span className="text-blue-500 text-xs">Do you not have account?</span>
+          <span className="text-var(--Intel--) text-xs">Do you not have account?</span>
           <Button variant="link">
             <Link to={"/register"}>Register</Link>
           </Button>

@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 // Client Components
@@ -46,13 +46,9 @@ export default function App() {
       {!isAuthPage && <Header />}
 
       <Routes>
-        {/* <Route path="/login" element={!token ? <LoginPage setToken={setToken} /> : <Navigate to="/" />} />
+        <Route path="/login" element={!token ? <LoginPage setToken={setToken} /> : <Navigate to="/" />} />
         <Route path="/register" element={!token ? <RegisterPage /> : <Navigate to="/login" />} />
-        <Route path="/" element={token ? <Shop /> : <Navigate to="/login" />} /> */}
-        
-        <Route path="/" element={<Shop />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/" element={token ? <Shop /> : <Navigate to="/login" />} />
         
         
         

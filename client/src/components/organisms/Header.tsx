@@ -10,7 +10,7 @@ export default function HeaderClient() {
   }, []);
 
   return (
-    <header className="w-full bg-[#589c00] text-white border-b-1 border-white fixed top-0 left-0 z-50">
+    <header className="w-full bg-[#589c00] text-white border-b border-white fixed top-0 left-0 z-50">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-5 md:grid md:grid-cols-3">
 
         {/* Logo */}
@@ -48,10 +48,10 @@ export default function HeaderClient() {
             </Link>
 
             <Link
-              to="/register"
+              to="/login"
               className="bg-white text-[#589c00] px-4 py-2 rounded font-medium hover:bg-green-100 transition"
             >
-              SignUp
+              Logout
             </Link>
 
           </nav>

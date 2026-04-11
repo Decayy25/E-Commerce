@@ -5,41 +5,51 @@ import { db } from "../config/db.js";
 export async function register(body) {
   console.log(body);
   try {
-    if (!body.email || !body.password) {
+    if (!body.username || !body.email || !body.phone || !body.birthday || !body.password || !body.confirmPassword) {
       return Response.json(
-        { message: "Email dan password wajib diisi" },
+        { message: "Semua wajib di isi!" },
+        { status: 400 }
+      );
+    };
+    if (body.password !== body.confirmPassword) {
+      return Response.json(
+        { message: "Password wajib sama dengan Confirm Password" },
         { status: 400 }
       );
     }
 
-    const existing = await db.collection("users")
-      .findOne({ email: body.email });
+    const existing = await db.collection("users").findOne({
+      $or: [
+        { email: body.email },
+        { username: body.username }
+      ]
+    });
 
     if (existing) {
       return Response.json(
-        { message: "Email sudah ada" },
+        { message: "Email atau username sudah terdaftar" },
         { status: 400 }
       );
     }
 
     const hashed = await bcrypt.hash(body.password, 10);
-
     await db.collection("users").insertOne({
       username: body.username,
       email: body.email,
+      phone: body.phone,
+      birthday: body.birthday,
       password: hashed,
       createdAt: new Date(),
-    });
+    })
 
-    console.log("Register:", body.email);
+    console.log("Register: ", body.email);
 
-    return Response.json({ message: "Register berhasil" });
-
-  } catch (err) {
     return Response.json(
-      { error: err.message },
+      { message: "Register Berhasil" }, 
       { status: 500 }
-    );
+    )
+  } catch (error) {
+    throw new error;
   }
 }
 
@@ -81,8 +91,10 @@ export async function login(body) {
 
     return Response.json({
       token,
-      email: user.email,
-      username: user.username
+      user: {
+        email: user.email,
+        username: user.username
+      }
     });
 
   } catch (err) {

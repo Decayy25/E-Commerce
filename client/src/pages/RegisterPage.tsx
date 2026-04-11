@@ -1,5 +1,5 @@
 import React from 'react';
-import { RegisterForm } from '../components/organisms/RegisterForm';
+import { RegisterForm } from '../components/templates/RegisterForm';
 import logo from "../assets/Logo.png"
 
 const RegisterPage: React.FC = () => {

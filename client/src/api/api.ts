@@ -17,7 +17,71 @@ export const getProducts = async () => {
         }));
     } catch (error) {
         console.error("Error Fecthing: ", error);
-        console.log(`${import.meta.env.VITE_URL}`)
         return [];
     }
 }
+
+export interface RegisterPayload {
+  username: string;
+  email: string;
+  phone: string;
+  birthday: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export interface Response {
+  message: string;
+}
+
+export const register = async (
+  payload: RegisterPayload
+): Promise<Response> => {
+  const res = await fetch(
+    `${import.meta.env.VITE_API}/api/auth/register`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    }
+  );
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.message || "Register gagal");
+  }
+
+  return data;
+};
+
+
+export interface LoginResponse {
+  message: string;
+  token: string;
+  user: {
+    id: string;
+    username: string;
+    email: string;
+  };
+}
+
+export const login = async (email: string, password: string): Promise<LoginResponse> => {
+  const res = await fetch(`${import.meta.env.VITE_API}/api/auth/login`, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({ email, password })
+  });
+
+  const data = await res.json();
+
+  if(!res.ok) {
+    throw new Error(data.message || "Login gagal");
+  }
+
+  return data;
+};
